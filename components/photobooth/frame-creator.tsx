@@ -291,7 +291,8 @@ export function FrameCreator({ layout, onSave, onBack }: FrameCreatorProps) {
     useEffect(() => {
         const updateScale = () => {
             if (!containerRef.current) return
-            const containerWidth = containerRef.current.clientWidth
+            // Subtract padding to prevent overflow on mobile
+            const containerWidth = containerRef.current.clientWidth - 2
             const maxWidth = Math.min(containerWidth, 500)
             setCanvasScale(maxWidth / dimensions.width)
         }
@@ -534,7 +535,7 @@ export function FrameCreator({ layout, onSave, onBack }: FrameCreatorProps) {
 
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6">
                 {/* Canvas area */}
-                <div ref={containerRef} className="flex justify-center">
+                <div ref={containerRef} className="flex justify-center overflow-hidden">
                     <canvas
                         ref={canvasRef}
                         className="rounded-xl border border-border shadow-lg cursor-crosshair"
@@ -542,10 +543,12 @@ export function FrameCreator({ layout, onSave, onBack }: FrameCreatorProps) {
                             width: dimensions.width * canvasScale,
                             height: dimensions.height * canvasScale,
                             maxWidth: "100%",
+                            touchAction: "none",
                         }}
                         onPointerDown={handlePointerDown}
                         onPointerMove={handlePointerMove}
                         onPointerUp={handlePointerUp}
+                        onPointerLeave={handlePointerUp}
                     />
                 </div>
 
@@ -557,8 +560,8 @@ export function FrameCreator({ layout, onSave, onBack }: FrameCreatorProps) {
                             type="button"
                             onClick={() => setActiveTab("sticker")}
                             className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-md text-sm font-medium transition-colors ${activeTab === "sticker"
-                                    ? "bg-background text-foreground shadow-sm"
-                                    : "text-muted-foreground hover:text-foreground"
+                                ? "bg-background text-foreground shadow-sm"
+                                : "text-muted-foreground hover:text-foreground"
                                 }`}
                         >
                             <Smile className="w-4 h-4" />
@@ -568,8 +571,8 @@ export function FrameCreator({ layout, onSave, onBack }: FrameCreatorProps) {
                             type="button"
                             onClick={() => setActiveTab("text")}
                             className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-md text-sm font-medium transition-colors ${activeTab === "text"
-                                    ? "bg-background text-foreground shadow-sm"
-                                    : "text-muted-foreground hover:text-foreground"
+                                ? "bg-background text-foreground shadow-sm"
+                                : "text-muted-foreground hover:text-foreground"
                                 }`}
                         >
                             <Type className="w-4 h-4" />
@@ -579,8 +582,8 @@ export function FrameCreator({ layout, onSave, onBack }: FrameCreatorProps) {
                             type="button"
                             onClick={() => setActiveTab("background")}
                             className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-md text-sm font-medium transition-colors ${activeTab === "background"
-                                    ? "bg-background text-foreground shadow-sm"
-                                    : "text-muted-foreground hover:text-foreground"
+                                ? "bg-background text-foreground shadow-sm"
+                                : "text-muted-foreground hover:text-foreground"
                                 }`}
                         >
                             <Palette className="w-4 h-4" />

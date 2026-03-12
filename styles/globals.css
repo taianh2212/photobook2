@@ -12,6 +12,26 @@ body {
   }
 }
 
+/* Mobile touch performance fixes */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button, a {
+  touch-action: manipulation;
+}
+
+/* Prevent canvas from being selected on touch */
+canvas {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

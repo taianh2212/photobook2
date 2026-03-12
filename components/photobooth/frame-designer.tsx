@@ -282,7 +282,8 @@ export function FrameDesigner({ frame, photos, onComplete, onBack, initialDecora
   useEffect(() => {
     const updateScale = () => {
       if (!containerRef.current) return
-      const containerWidth = containerRef.current.clientWidth
+      // Subtract padding to prevent overflow on mobile
+      const containerWidth = containerRef.current.clientWidth - 2
       const maxWidth = Math.min(containerWidth, 500)
       setCanvasScale(maxWidth / frame.width)
     }
@@ -519,7 +520,7 @@ export function FrameDesigner({ frame, photos, onComplete, onBack, initialDecora
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6">
         {/* Canvas area */}
-        <div ref={containerRef} className="flex justify-center">
+        <div ref={containerRef} className="flex justify-center overflow-hidden">
           <canvas
             ref={canvasRef}
             className="rounded-xl border border-border shadow-lg cursor-crosshair"
@@ -527,10 +528,12 @@ export function FrameDesigner({ frame, photos, onComplete, onBack, initialDecora
               width: frame.width * canvasScale,
               height: frame.height * canvasScale,
               maxWidth: "100%",
+              touchAction: "none",
             }}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
+            onPointerLeave={handlePointerUp}
           />
         </div>
 

@@ -65,7 +65,6 @@ export function CameraCapture({
       console.error("Cannot access camera", err)
       let errorMessage = err?.message || "Loi truy cap camera. Vui long cap quyen truy cap camera cho trinh duyet."
 
-      // Specifically handle NotReadableError which is usually caused by another app using the camera
       if (err?.name === "NotReadableError" || errorMessage.includes("Could not start video source")) {
         errorMessage = "Camera dang duoc su dung boi ung dung khac (Zoom, Meet...) hoac bi loi phan cung. Vui long tat cac ung dung do hoac khoi dong lai trinh duyet va thu lai."
       }
@@ -220,7 +219,7 @@ export function CameraCapture({
         {countdown !== null && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div
-              className="text-[10rem] font-black select-none leading-none animate-pulse"
+              className="text-[6rem] sm:text-[10rem] font-black select-none leading-none animate-pulse"
               style={{
                 color: 'rgba(255, 255, 255, 0.5)',
                 textShadow: '0 0 40px rgba(0,0,0,0.3), 0 4px 20px rgba(0,0,0,0.4)',
@@ -280,7 +279,7 @@ export function CameraCapture({
       )}
 
       {/* Controls */}
-      <div className="flex items-center gap-4 w-full justify-center">
+      <div className="flex items-center gap-3 sm:gap-4 w-full justify-center flex-wrap">
         <Button
           variant="outline"
           size="icon"

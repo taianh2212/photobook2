@@ -176,7 +176,7 @@ export function PhotoboothApp() {
       </header>
 
       {/* Main content */}
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main className="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
         {step === "home" && (
           <div className="flex flex-col items-center gap-12 py-16">
             <div className="text-center max-w-lg">
@@ -188,7 +188,7 @@ export function PhotoboothApp() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full max-w-4xl">
               <button
                 type="button"
                 onClick={() => handleSelectMode("camera")}
@@ -245,7 +245,7 @@ export function PhotoboothApp() {
                   <Palette className="w-5 h-5 text-green-500" />
                   Khung ảnh đã tạo ({customFrames.length})
                 </h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                   {customFrames.map((frame) => (
                     <div
                       key={frame.id}

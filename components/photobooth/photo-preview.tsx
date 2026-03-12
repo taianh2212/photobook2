@@ -223,11 +223,11 @@ export function PhotoPreview({ frame, photos, decoration, onBack, onRestart }: P
       <div className="relative w-full flex justify-center">
         <canvas ref={canvasRef} className="hidden" />
         {compositeUrl ? (
-          <div className="rounded-xl overflow-hidden shadow-2xl border border-border max-h-[70vh]">
+          <div className="rounded-xl overflow-hidden shadow-2xl border border-border max-h-[60vh] sm:max-h-[70vh] w-full flex justify-center">
             <img
               src={compositeUrl || "/placeholder.svg"}
               alt="Thanh pham photobooth"
-              className="max-w-full max-h-[70vh] object-contain"
+              className="max-w-full max-h-[60vh] sm:max-h-[70vh] object-contain"
             />
           </div>
         ) : (
